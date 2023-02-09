@@ -13,7 +13,7 @@ final class URLBuilder {
     private var pathComponents = [String]()
 
     static var kommunicateApi: URLBuilder {
-        return URLBuilder(host: "api.kommunicate.io")
+        return URLBuilder(host: "api-test.kommunicate.io")
     }
 
     static var chatApi: URLBuilder {
