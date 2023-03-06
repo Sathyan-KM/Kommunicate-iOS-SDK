@@ -280,13 +280,13 @@ open class Kommunicate: NSObject, Localizable {
                 conversation.botIds = allBotIds
 
                 let isClientIdEmpty = (conversation.clientConversationId ?? "").isEmpty
-                if isClientIdEmpty, conversation.useLastConversation {
-                    conversation.clientConversationId = service.createClientIdFrom(
-                        userId: conversation.userId,
-                        agentIds: conversation.agentIds,
-                        botIds: conversation.botIds ?? []
-                    )
-                }
+//                if isClientIdEmpty, conversation.useLastConversation {
+//                    conversation.clientConversationId = service.createClientIdFrom(
+//                        userId: conversation.userId,
+//                        agentIds: conversation.agentIds,
+//                        botIds: conversation.botIds ?? []
+//                    )
+//                }
                 service.createConversation(conversation: conversation, completion: { response in
                     DispatchQueue.main.async {
                         guard let conversationId = response.clientChannelKey else {
