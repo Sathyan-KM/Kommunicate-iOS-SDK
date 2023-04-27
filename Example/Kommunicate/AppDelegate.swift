@@ -9,19 +9,23 @@
     import Kommunicate
     import UIKit
     import UserNotifications
-
+    import KommunicateCore_iOS_SDK
     @UIApplicationMain
     class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
         var window: UIWindow?
 
         // Pass your App Id here. You can get the App Id from install section in the dashboard.
-        var appId = ""
+        var appId = "18ae6ce9d4f469f95c9c095fb5b0bda44"
+        //"18ae6ce9d4f469f95c9c095fb5b0bda44"
+        //"34841b8e0a40512305a641bded1ae759b"
+        //"10dbd46a1c53620d1babdb0094c2bdcef" - test start plan
+        //"18ae6ce9d4f469f95c9c095fb5b0bda44"
+        //"34841b8e0a40512305a641bded1ae759b" - mindgrapgh
 
         func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
             setUpNavigationBarAppearance()
 
             UNUserNotificationCenter.current().delegate = self
-
             registerForNotification()
             KMPushNotificationHandler.shared.dataConnectionNotificationHandlerWith(Kommunicate.defaultConfiguration, Kommunicate.kmConversationViewConfiguration)
             let kmApplocalNotificationHandler = KMAppLocalNotification.appLocalNotificationHandler()

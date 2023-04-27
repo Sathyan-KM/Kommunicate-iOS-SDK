@@ -93,6 +93,7 @@
             resignFields()
             let applicationId = (UIApplication.shared.delegate as! AppDelegate).appId
             setupApplicationKey(applicationId)
+            KMUserDefaultHandler.setUnreadCountType(1)
 
             let kmUser = userWithUserId(Kommunicate.randomId(), andApplicationId: applicationId)
             registerUser(kmUser)

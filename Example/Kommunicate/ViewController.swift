@@ -9,8 +9,48 @@
 #if os(iOS)
     import Kommunicate
     import UIKit
+import KommunicateCore_iOS_SDK
+import KommunicateChatUI_iOS_SDK
 
-    class ViewController: UIViewController {
+class ViewController: UIViewController, ALKCustomEventCallback {
+    func messageSent(message: ALMessage) {
+        
+    }
+    
+    func messageReceived(message: ALMessage) {
+        
+    }
+    
+    func conversationRestarted(conversationId: String) {
+        
+    }
+    
+    func onBackButtonClick(isConversationOpened: Bool) {
+        
+    }
+    
+    func faqClicked(url: String) {
+        
+    }
+    
+    func conversationCreated(conversationId: String) {
+        
+    }
+    
+    func ratingSubmitted(conversationId: String, rating: Int, comment: String) {
+        
+    }
+    
+    func richMessageClicked(conversationId: String, action: Any, type: String) {
+        print("pakka101 \(conversationId) action: \(action) type: \(type)")
+
+    }
+    
+    func conversationInfoClicked() {
+        print("pakka101")
+    }
+    
+        
         let activityIndicator = UIActivityIndicatorView(style: .gray)
 
         override func viewDidLoad() {
@@ -22,17 +62,48 @@
         }
 
         @IBAction func launchConversation(_: Any) {
-            activityIndicator.startAnimating()
-            view.isUserInteractionEnabled = false
-
-            Kommunicate.createAndShowConversation(from: self, completion: {
-                error in
-                self.activityIndicator.stopAnimating()
-                self.view.isUserInteractionEnabled = true
-                if error != nil {
-                    print("Error while launching")
-                }
-            })
+//            activityIndicator.startAnimating()
+//            view.isUserInteractionEnabled = false
+//
+//            Kommunicate.createAndShowConversation(from: self, completion: {
+//                error in
+//                self.activityIndicator.stopAnimating()
+//                self.view.isUserInteractionEnabled = true
+//                if error != nil {
+//                    print("Error while launching")
+//                }
+//            })
+            let event: [CustomEvent] = [.richMessageClick, .faqClick, .messageSend, .messageReceive]
+            Kommunicate.subscribeCustomEvents(events: event, callback: self)
+//            let kmConversation = KMConversationBuilder()
+//
+//                // Using BotIds parameter the bots can be added to the conversations
+//                .withBotIds(["test-s8jmv"])
+//
+//                // To set the conversation assignee, pass AgentId or BotId.
+//                .withConversationAssignee("test-s8jmv")
+//
+//                .useLastConversation(false)
+//
+//                .build()
+//
+//            Kommunicate.createConversation(conversation: kmConversation) { result in
+//                switch result {
+//                case .success(let conversationId):
+//                    print("Conversation id: ",conversationId)
+//                    Kommunicate.showConversationWith(
+//                        groupId: conversationId,
+//                        from: self,
+//                        showListOnBack: false, // If true, then the conversation list will be shown on tap of the back button.
+//                        completionHandler: { success in
+//                        print("conversation was shown")
+//                    })
+//                // Launch conversation
+//                case .failure(let kmConversationError):
+//                    print("Failed to create a conversation: ", kmConversationError)
+//                }
+//            }
+            Kommunicate.showConversations(from: self)
         }
 
         @IBAction func logoutAction(_: Any) {
